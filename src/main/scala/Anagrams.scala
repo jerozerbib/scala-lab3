@@ -99,10 +99,32 @@ object Anagrams extends App {
    *  appear in `x`.
    */
 
-  def subtract(x: FingerPrint, y: FingerPrint): FingerPrint = ???
+  def subtract(x: FingerPrint, y: FingerPrint): FingerPrint = {
+    /**
+     * We proceed sequentially, if head of x == head of y, we remove it from the accumulator,
+     * otherwise we get to keep it. We can proceed sequentially because we assume x and y are Fingerprints
+     * and thus are ordered and that y is a subset of x. Those two conditions are necessary for
+     * this function to work properly.
+     * @param x the fingerprint from which we subtract
+     * @param y the fingerprint to subtract
+     * @param acc the accumulator
+     * @return y subtracted from x
+     */
+    @scala.annotation.tailrec
+    def subtractLoop(x: FingerPrint, y: FingerPrint, acc: FingerPrint): FingerPrint = {
+      // Should not arrive at the condition that x is Empty since we assume that y is a subset of x
+      if (y.isEmpty || x.isEmpty) acc ++ x  // append the rest of x at the end
+      else x.head match {
+        case xh if xh == y.head => subtractLoop(x.tail, y.tail, acc)
+        case _ => subtractLoop(x.tail, y, s"$acc${x.head}" )  // If not equal we can keep head x
+      }
+    }
+    subtractLoop(x, y, "")
+  }
 
   // Test code with for example:
-  //println(subtract("aabbcc", "abc"))
+  println(subtract("aabbcc", "abc"))
+  println(subtract("aabcdef", "ade"))
 
 
   /** Returns a list of all anagram sentences of the given sentence.
