@@ -1,5 +1,4 @@
-import scala.collection.immutable._
-
+import scala.collection.immutable.{List, Map}
 
 object Anagrams extends App {
 
@@ -10,7 +9,7 @@ object Anagrams extends App {
   type Sentence = List[Word]
 
   /** A fingerprint is a string which represents a sorted sequence of characters:
-   *  Examples: 
+   *  Examples:
    *
    *    "aaccx"
    *    "abyz"
@@ -22,12 +21,12 @@ object Anagrams extends App {
 
 
   /** The dictionary is simply a sequence of words.
-   *  You can begin your development with this simple example. 
-   *  A dictionary of English words is given to you as an external file (linuxwords.txt)  
-   *  that you can load to use with your program  
+   *  You can begin your development with this simple example.
+   *  A dictionary of English words is given to you as an external file (linuxwords.txt)
+   *  that you can load to use with your program
    */
 
-  val dictionary: List[Word] =    
+  val dictionary: List[Word] =
     List("ate", "eat", "tea", "pot", "top", "sonja", "jason", "normal",
          "I", "love", "you", "olive")
 
@@ -38,7 +37,7 @@ object Anagrams extends App {
    */
 
   def fingerPrint(s: Word): FingerPrint = ???
-  def fingerPrint(s: Sentence): FingerPrint = ??? 
+  def fingerPrint(s: Sentence): FingerPrint = ???
 
 
   /** `matchingWords` is a `Map` from fingerprints to a sequence of all
