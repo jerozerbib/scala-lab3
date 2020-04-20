@@ -57,13 +57,12 @@ object Anagrams extends App {
 
   val matchingWords: Map[FingerPrint, List[Word]] = dictionary.groupBy(s => fingerPrint(s))
 
-
   /** Returns all the anagrams of a given word. */
-  def wordAnagrams(word: Word): List[Word] = ???
+  def wordAnagrams(word: Word): List[Word] = matchingWords.getOrElse(fingerPrint(word), List())
 
   // Test code with for example:
-  // println(wordAnagrams("eta"))
-  // println(wordAnagrams("jbdikb"))
+  println(wordAnagrams("eta"))
+  println(wordAnagrams("jbdikb"))
 
 
   /** Returns the list of all subsequences of a fingerprint.
