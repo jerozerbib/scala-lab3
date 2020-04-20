@@ -78,11 +78,18 @@ object Anagrams extends App {
    *  in the example above could have been displayed in some other order.
    */
 
-  def subseqs(fp: FingerPrint): List[FingerPrint] = ???
+  def subseqs(fp: FingerPrint): List[FingerPrint] = {
+    @scala.annotation.tailrec
+    def loop(fingerPrint: FingerPrint, acc: List[FingerPrint]): List[FingerPrint] = {
+      if (fingerPrint.isEmpty) acc
+      else loop(fingerPrint.tail, acc ++ (acc map(_ + fingerPrint.head)))
+    }
+    loop(fp, List(""))
+  }
 
 
   // Test code with for example:
-  // println(subseqs("aabbc"))
+  println(subseqs("abbc"))
 
 
   /** Subtracts fingerprint `y` from fingerprint `x`.
@@ -95,7 +102,7 @@ object Anagrams extends App {
   def subtract(x: FingerPrint, y: FingerPrint): FingerPrint = ???
 
   // Test code with for example:
-  // println(subtract("aabbcc", "abc"))
+  //println(subtract("aabbcc", "abc"))
 
 
   /** Returns a list of all anagram sentences of the given sentence.
